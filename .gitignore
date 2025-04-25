@@ -1,0 +1,19 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+
+# ---- Node / Frontend ----
+node_modules/
+frontend/dist/
+
+# ---- Editor / OS ----
+.DS_Store
+.idea/
+.vscode/
+
+# ---- Runtime artifacts ----
+storage/
+*.faiss
+*.pdf
+.env

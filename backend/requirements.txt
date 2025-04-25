@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+langchain
+sentence-transformers
+faiss-cpu
+pymupdf
+sqlmodel
+supabase
+python-multipart
+python-dotenv
