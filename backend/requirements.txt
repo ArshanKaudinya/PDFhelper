@@ -1,10 +1,16 @@
 fastapi
 uvicorn[standard]
-langchain
+langchain==0.2.*
+langchain-community
+langchain-text-splitters
+langchain-huggingface
 sentence-transformers
 faiss-cpu
+transformers>=4.40
+torch                     
 pymupdf
 sqlmodel
 supabase
 python-multipart
 python-dotenv
+huggingface_hub
