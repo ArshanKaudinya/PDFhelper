@@ -1,16 +1,21 @@
-from typing import Optional
 from datetime import datetime
-from sqlmodel import SQLModel, Field, create_engine
+from pathlib import Path
+from sqlmodel import SQLModel, Field, create_engine, Session
+
 
 class Document(SQLModel, table=True):
-    id: str = Field(primary_key=True)       
+    id: str = Field(primary_key=True)    
     filename: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
     pages: int
-    supabase_path: str                      
+    supabase_path: str                         
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
-sqlite_url = "sqlite:///../app.db"         
-engine = create_engine(sqlite_url, echo=False)
+DB_PATH = Path(__file__).resolve().parent.parent / "app.db"
+engine = create_engine(f"sqlite:///{DB_PATH}")
 
 def init_db() -> None:
+    """Create tables if they don't exist."""
     SQLModel.metadata.create_all(engine)
+
+def get_session() -> Session:
+    return Session(engine)

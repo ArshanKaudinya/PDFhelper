@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from .models import init_db
 
+init_db()
 load_dotenv() 
 
 app = FastAPI(title="PDF-QA API", version="0.1.0")
