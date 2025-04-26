@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const base = "http://127.0.0.1:8000";
+const base = "http://127.0.0.1:8000"; // process.env.NEXT_PUBLIC_API_BASE for production 
 
 export const api = axios.create({ baseURL: base });
 

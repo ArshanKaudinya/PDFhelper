@@ -15,7 +15,10 @@ faiss-cpu
 pymupdf                       
 
 # --- data layer ---
-sqlmodel                      
+sqlmodel                
+
+# storage backend
+supabase 
 
 # --- multipart uploads ---
 python-multipart              
