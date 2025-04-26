@@ -27,3 +27,4 @@ python-dotenv
 
 # --- remote HF calls (embeddings + Mixtral) ---
 huggingface_hub               
+sentence-transformers
