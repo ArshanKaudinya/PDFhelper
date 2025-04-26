@@ -1,5 +1,4 @@
 from fastapi.middleware.cors import CORSMiddleware
-from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 from dotenv import load_dotenv
 from .models import init_db

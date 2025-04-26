@@ -1,18 +1,15 @@
-import uuid, fitz
-from pathlib import Path
-import fitz                               # PyMuPDF
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 import uuid, fitz
 from pathlib import Path
-from langchain_text_splitters import CharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceInferenceAPIEmbeddings
 from .storage import upload_pdf
 from .models import Document, get_session
+import os
 
 
-EMBEDDER = HuggingFaceEmbeddings(
+EMBEDDER = HuggingFaceInferenceAPIEmbeddings(
+    api_key=os.getenv("HF_TOKEN"),
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 CHUNK = 1_000
