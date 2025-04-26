@@ -21,9 +21,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/", include_in_schema=False)
-def root():
-    return {"status": "ok"}
+@app.get("/ping", include_in_schema=False)
+def ping():
+    return {"alive": True}
 
 
 @app.post("/upload", tags=["documents"])
