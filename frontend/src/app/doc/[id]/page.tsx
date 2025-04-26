@@ -12,7 +12,7 @@ export default function Chat() {
   const { id } = useParams<{ id: string }>();
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   const askMut = useMutation({
     mutationFn: (q: string) => ask(id, q),
@@ -29,43 +29,40 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [msgs]);
-
-  const onScroll = () => {
-    if (!scrollRef.current) return;
-    if (scrollRef.current.scrollTop === 0) {
-      // TODO: loadOlderMessages(); // stub for future pagination
-    }
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-zinc-800">
       <Navbar />
 
-      <main
-        ref={scrollRef}
-        onScroll={onScroll}
-        className="flex-1 overflow-y-auto px-4 py-6 space-y-4"
-      >
-        {msgs.map((m, i) => (
-          <div
-            key={i}
-            className={`max-w-xs md:max-w-md break-words px-4 py-2 rounded-2xl shadow
-              ${
-                m.role === "user"
-                  ? "self-end bg-emerald-100"
-                  : "self-start bg-zinc-100"
+      <main className="flex-1 overflow-y-auto px-4 py-6">
+        <div className="flex flex-col items-center space-y-4">
+          {msgs.map((m, i) => (
+            <div
+              key={i}
+              className={`flex w-full max-w-2xl ${
+                m.role === "user" ? "justify-end" : "justify-start"
               }`}
-          >
-            {m.text}
-          </div>
-        ))}
-        {askMut.isPending && (
-          <div className="self-start max-w-xs md:max-w-md px-4 py-2 rounded-2xl bg-zinc-100 shadow animate-pulse">
-            …
-          </div>
-        )}
+            >
+              <div
+                className={`px-4 py-2 rounded-2xl shadow text-sm break-words max-w-xs md:max-w-md ${
+                  m.role === "user"
+                    ? "bg-emerald-200 text-right rounded-br-none"
+                    : "bg-zinc-200 text-left rounded-bl-none"
+                }`}
+              >
+                {m.text}
+              </div>
+            </div>
+          ))}
+          {askMut.isPending && (
+            <div className="flex w-full max-w-2xl justify-start">
+              <div className="flex items-center justify-center w-8 h-8 border-4 border-emerald-300 border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
+          <div ref={bottomRef} />
+        </div>
       </main>
 
       <footer className="sticky bottom-0 w-full bg-white border-t px-4 py-3">

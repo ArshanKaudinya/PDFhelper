@@ -2,15 +2,10 @@ from langchain_text_splitters import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 import uuid, fitz
 from pathlib import Path
-from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from .storage import upload_pdf
 from .models import Document, get_session
-import os
+from app.embeddings import EMBEDDER
 
-EMBEDDER = HuggingFaceInferenceAPIEmbeddings(
-    api_key=os.getenv("HF_TOKEN"),
-    model_name="sentence-transformers/all-MiniLM-L6-v2",
-)
 CHUNK = 1_000
 OVERLAP = 100
 STORE_DIR = Path(__file__).resolve().parent.parent / "storage"

@@ -1,15 +1,11 @@
 from pathlib import Path
-from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_community.llms import HuggingFaceEndpoint
 import os
+from app.embeddings import EMBEDDER
 
-EMBEDDER = HuggingFaceInferenceAPIEmbeddings(
-    api_key=os.getenv("HF_TOKEN"),
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
 
 LLM = HuggingFaceEndpoint(
     repo_id="mistralai/Mixtral-8x7B-Instruct-v0.1",
