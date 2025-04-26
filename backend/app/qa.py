@@ -19,7 +19,7 @@ LLM = HuggingFaceEndpoint(
 QA_PROMPT = PromptTemplate(
     input_variables=["context", "question"],
     template=(
-        "You are a helpful assistant answering questions based only on the provided PDF excerpt.\n\n"
+        "You are an helpful assistant answering questions based only on the provided PDF excerpt.\n\n"
         "------------------\n"
         "{context}\n"
         "------------------\n\n"
