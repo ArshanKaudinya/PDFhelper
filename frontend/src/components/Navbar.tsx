@@ -13,7 +13,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="h-14 border-b border-gray-200 flex items-center px-4 justify-between">
+    <header className="h-15 sticky top-0 border-b bg-white border-gray-200 flex items-center px-8 justify-between">
       <Link href="/" className="text-xl font-semibold text-emerald-600">
         ai<span className="font-light">planet</span>
       </Link>

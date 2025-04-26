@@ -1,18 +1,18 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
 import { ask } from "@/lib/api";
 import { useMutation } from "@tanstack/react-query";
-import { useParams, useSearchParams } from "next/navigation";
-import { useRef, useState } from "react";
-import Navbar from "@/components/Navbar";
+import { useParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 type Msg = { role: "user" | "bot"; text: string };
 
 export default function Chat() {
   const { id } = useParams<{ id: string }>();
-  const params = useSearchParams();
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const askMut = useMutation({
     mutationFn: (q: string) => ask(id, q),
@@ -28,42 +28,64 @@ export default function Chat() {
     askMut.mutate(q);
   };
 
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
+  }, [msgs]);
+
+  const onScroll = () => {
+    if (!scrollRef.current) return;
+    if (scrollRef.current.scrollTop === 0) {
+      // TODO: loadOlderMessages(); // stub for future pagination
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white text-zinc-800">
       <Navbar />
 
-      <main className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
+      <main
+        ref={scrollRef}
+        onScroll={onScroll}
+        className="flex-1 overflow-y-auto px-4 py-6 space-y-4"
+      >
         {msgs.map((m, i) => (
-          <p
+          <div
             key={i}
-            className={`max-w-xl ${
-              m.role === "user"
-                ? "self-end bg-emerald-50"
-                : "self-start bg-gray-100"
-            } rounded-xl px-4 py-2 text-sm`}
+            className={`max-w-xs md:max-w-md break-words px-4 py-2 rounded-2xl shadow
+              ${
+                m.role === "user"
+                  ? "self-end bg-emerald-100"
+                  : "self-start bg-zinc-100"
+              }`}
           >
             {m.text}
-          </p>
+          </div>
         ))}
+        {askMut.isPending && (
+          <div className="self-start max-w-xs md:max-w-md px-4 py-2 rounded-2xl bg-zinc-100 shadow animate-pulse">
+            …
+          </div>
+        )}
       </main>
 
-      <footer className="border-t px-6 py-3">
-        <div className="flex gap-2">
+      <footer className="sticky bottom-0 w-full bg-white border-t px-4 py-3">
+        <div className="flex gap-2 max-w-3xl mx-auto">
           <input
             ref={inputRef}
-            placeholder="Send a message…"
-            className="flex-1 border rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-emerald-300"
+            placeholder="Type a message…"
+            className="flex-1 border rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-emerald-300 bg-zinc-50"
             onKeyDown={(e) => e.key === "Enter" && send()}
           />
           <button
             onClick={send}
             disabled={askMut.isPending}
-            className="px-3 py-2 border rounded-md text-sm hover:bg-emerald-50 disabled:opacity-50"
+            className="shrink-0 px-4 py-2 rounded-full border bg-emerald-500 text-white text-sm disabled:opacity-50"
           >
-            ➤
+            Send
           </button>
         </div>
       </footer>
     </div>
   );
 }
+

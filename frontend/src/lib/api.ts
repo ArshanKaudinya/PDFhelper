@@ -1,16 +1,13 @@
 import axios from "axios";
 
-const base =
-  process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
+const base = "http://127.0.0.1:8000";
 
-  export const api = axios.create({ baseURL: base });
+export const api = axios.create({ baseURL: base });
 
 export async function uploadPdf(file: File) {
   const form = new FormData();
   form.append("file", file);
-  const { data } = await api.post("/upload", form, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  const { data } = await api.post("/upload", form);
   return data as { doc_id: string };
 }
 

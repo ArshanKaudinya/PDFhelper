@@ -1,5 +1,5 @@
 from pathlib import Path
-from langchain_huggingface import HuggingFaceInferenceAPIEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
@@ -30,8 +30,6 @@ QA_PROMPT = PromptTemplate(
         "Instructions:\n"
         "- Answer the question truthfully and concisely.\n"
         "- Do not make up information or speculate.\n"
-        "- If the answer is not in the text, respond with:\n"
-        '  "The answer is not present in the document."\n\n'
         "Question: {question}\n"
         "Answer:"
     ),

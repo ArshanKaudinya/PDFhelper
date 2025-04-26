@@ -1,13 +1,27 @@
+# --- core web stack ---
 fastapi
 uvicorn[standard]
-langchain==0.2.*
-langchain-community
+
+# --- LangChain 0.3 ecosystem ---
+langchain==0.3.*
+langchain-community          
 langchain-text-splitters
-langchain-huggingface
-faiss-cpu                     
-pymupdf
-sqlmodel
-supabase
-python-multipart
-python-dotenv
-huggingface_hub
+langchain-huggingface        
+
+# --- vector store ---
+faiss-cpu                    
+
+# --- PDF parsing ---
+pymupdf                       
+
+# --- data layer ---
+sqlmodel                      
+
+# --- multipart uploads ---
+python-multipart              
+
+# --- env vars ---
+python-dotenv                 
+
+# --- remote HF calls (embeddings + Mixtral) ---
+huggingface_hub               
