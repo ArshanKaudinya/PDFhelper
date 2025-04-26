@@ -21,6 +21,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/", include_in_schema=False)
+def root():
+    return {"status": "ok"}
+
 
 @app.post("/upload", tags=["documents"])
 async def upload(file: UploadFile = File(...)):
