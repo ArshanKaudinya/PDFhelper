@@ -78,13 +78,13 @@ export default function Home() {
         </ul>
         <div className="relative mt-0 flex justify-center w-full">
           <button
-            className="group w-8 h-8 border border-emerald-500 text-emerald-500 bg-white text-sm font-semibold flex items-center justify-center rounded-full select-none"
+            className="group w-8 h-8 border border-emerald-500 text-emerald-500 bg-white text-md font-semibold flex items-center justify-center rounded-full select-none"
             aria-label="App credits"
           >
             i
             {/* tooltip */}
             <span className="absolute top-full mt-2 bg-white text-emerald-700 border border-emerald-400 text-xs px-4 py-2 rounded shadow-sm opacity-0 group-hover:opacity-100 transition pointer-events-none max-w-xs text-center">
-              Made by Arshan Kaudinya during 26–29 April.<br />For AI Planet full-stack intern assignment
+              Made by Arshan Kaudinya during 25–29 April.<br />For AI Planet full-stack intern assignment
             </span>
           </button>
         </div>
@@ -92,7 +92,10 @@ export default function Home() {
       {loading && (
         <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center z-50">
           <div className="w-10 h-10 border-4 border-emerald-400 border-t-transparent rounded-full animate-spin" />
-          <p className="mt-4 text-emerald-600 text-sm">Loading chat...</p>
+          <p className="mt-4 text-emerald-600 text-center text-sm">
+            Loading chat...<br />
+            Server response may take up to a minute!
+          </p>
         </div>
       )}
     </div>
