@@ -11,12 +11,16 @@ MAX_MB = 10
 init_db()
 load_dotenv() 
 
-app = FastAPI(title="PDF-QA API", version="0.1.0")
+app = FastAPI(title="PDF-QA API")
+
+
+origins = [
+    "http://localhost:3000",
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
