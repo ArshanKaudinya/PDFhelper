@@ -11,6 +11,8 @@ export default function Home() {
   const mutation = useMutation({ mutationFn: uploadPdf });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [show, setShow] = useState(false);
+
 
 
   const onSelect = (e: ChangeEvent<HTMLInputElement>) => {
@@ -78,16 +80,28 @@ export default function Home() {
         </ul>
 
         <div className="relative mt-0 flex justify-center w-full">
-          <button
-            className="group w-8 h-8 border border-emerald-500 text-emerald-500 bg-white text-md font-semibold flex items-center justify-center rounded-full select-none"
-            aria-label="App credits"
-          >
-            i
-            <span className="absolute top-full mt-2 bg-white text-emerald-700 border border-emerald-400 text-xs px-4 py-2 rounded shadow-sm opacity-0 group-hover:opacity-100 transition pointer-events-none max-w-xs text-center">
-              Made by Arshan Kaudinya during 25–29 April.<br />For AI Planet full-stack intern assignment
+          <div className="relative">
+            <button
+              className="w-8 h-8 border border-emerald-500 text-emerald-500 bg-white text-md font-semibold flex items-center justify-center rounded-full select-none"
+              aria-label="App credits"
+              onClick={() => setShow(prev => !prev)}
+              onMouseEnter={() => setShow(true)}
+              onMouseLeave={() => setShow(false)}
+            >
+              i
+            </button>
+
+            <span
+              className={`absolute top-full mt-2 bg-white text-emerald-700 border border-emerald-400 text-xs px-4 py-2 rounded shadow-sm max-w-xs text-center transition-opacity ${
+                show ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              Made by Arshan Kaudinya during 25–29 April.<br />
+              For AI Planet full-stack intern assignment
             </span>
-          </button>
+          </div>
         </div>
+
       </main>
 
       {loading && (
