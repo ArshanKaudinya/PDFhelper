@@ -101,24 +101,32 @@ export default function Chat() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-50 text-zinc-800">
+    <div className="min-h-screen flex flex-col bg-zinc-50 text-zinc-800 relative">
       <Navbar />
+
+      {showSearch && (
+        <div className="flex justify-center mb-2">
+          <input
+            type="text"
+            placeholder="Search chat..."
+            className="border border-zinc-400 rounded-full px-4 py-1 w-64 text-sm focus:ring-2 focus:ring-emerald-300 bg-zinc-50"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
+      )}
 
       <main
         ref={scrollRef}
         className="flex-1 overflow-y-auto px-4 py-6 relative"
       >
-        {/* StarterPrompt with smooth fade-out */}
-        <div
-          className={`flex flex-1 items-center justify-center absolute inset-0 transition-opacity duration-500 ${
-            msgs.length === 0 ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <StarterPrompt />
-        </div>
+        {msgs.length === 0 && (
+          <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-500">
+            <StarterPrompt />
+          </div>
+        )}
 
-        {/* Chat Messages */}
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center space-y-4 relative z-10">
           {msgs.map((m, i) => (
             <div
               key={i}
@@ -147,7 +155,6 @@ export default function Chat() {
             </div>
           ))}
 
-          {/* Typing dots */}
           {askMut.isPending && (
             <div className="flex w-full max-w-2xl justify-start">
               <div className="px-4 py-2 rounded-2xl bg-zinc-200 text-sm text-slate-700 animate-pulse">
@@ -160,22 +167,8 @@ export default function Chat() {
         </div>
       </main>
 
-      {/* Search bar */}
-      {showSearch && (
-        <div className="flex justify-center mb-2">
-          <input
-            type="text"
-            placeholder="Search chat..."
-            className="border border-zinc-400 rounded-full px-4 py-1 w-64 text-sm focus:ring-2 focus:ring-emerald-300 bg-zinc-50"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-        </div>
-      )}
-
       <footer className="sticky bottom-0 w-full bg-white border border-zinc-400 px-4 py-3">
         <div className="flex gap-2 max-w-3xl mx-auto items-center">
-          {/* Search button */}
           <button
             onClick={() => setShowSearch(prev => !prev)}
             className="p-2 rounded-full bg-emerald-100 hover:bg-emerald-200 transition text-emerald-700 text-sm"
@@ -183,7 +176,6 @@ export default function Chat() {
             🔍
           </button>
 
-          {/* Typing Input */}
           <input
             ref={inputRef}
             placeholder="Type a message…"
@@ -191,7 +183,6 @@ export default function Chat() {
             onKeyDown={e => e.key === "Enter" && send()}
           />
 
-          {/* Send button */}
           <button
             onClick={send}
             disabled={askMut.isPending}
@@ -204,4 +195,5 @@ export default function Chat() {
     </div>
   );
 }
+
 
