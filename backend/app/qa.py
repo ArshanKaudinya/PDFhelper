@@ -2,18 +2,16 @@ from pathlib import Path
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
-from langchain_community.llms import HuggingFaceEndpoint
+from langchain_together import Together
 import os
 from app.embeddings import EMBEDDER
 
 
-LLM = HuggingFaceEndpoint(
-    repo_id="mistralai/Mixtral-8x7B-Instruct-v0.1",
-    task="text-generation",
+LLM = Together(
+    model="mistralai/Mixtral-8x7b-instruct-v0.1",
     temperature=0.2,
     max_tokens=350,
-    huggingface_api_token=os.getenv("HF_TOKEN"),
-    wait_for_model=True,
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 QA_PROMPT = PromptTemplate(

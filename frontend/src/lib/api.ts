@@ -1,6 +1,4 @@
-import axios from "axios";
-
-const base = process.env.NEXT_PUBLIC_API_BASE; //for prod process.env.NEXT_PUBLIC_API_BASE, for local http://127.0.0.1:8000
+const base = "http://127.0.0.1:8000"; //for prod process.env.NEXT_PUBLIC_API_BASE, for local http://127.0.0.1:8000
 
 export async function uploadPdf(file: File) {
   const URL = `${base}/upload`;

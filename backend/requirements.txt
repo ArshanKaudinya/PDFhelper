@@ -6,6 +6,7 @@ uvicorn[standard]
 langchain==0.3.*
 langchain-community          
 langchain-text-splitters      
+langchain-together>=0.0.1
 
 # --- vector store ---
 faiss-cpu                    
@@ -25,6 +26,3 @@ python-multipart
 # --- env vars ---
 python-dotenv                 
 
-# --- remote HF calls (embeddings + Mixtral) ---
-huggingface_hub               
-sentence-transformers

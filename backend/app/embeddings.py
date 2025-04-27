@@ -1,5 +1,10 @@
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from dotenv import load_dotenv
+load_dotenv()
 
-EMBEDDER = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+from langchain_together import TogetherEmbeddings
+import os
+
+EMBEDDER = TogetherEmbeddings(
+    model="togethercomputer/m2-bert-80M-8k-retrieval",
+    api_key=os.getenv("OPENAI_API_KEY")
 )

@@ -15,7 +15,7 @@ app = FastAPI(title="PDF-QA API")
 
 
 origins = [
-    "http://localhost:3000",
+    "*",
 ]
 
 app.add_middleware(
