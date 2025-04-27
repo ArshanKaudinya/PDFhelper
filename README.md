@@ -20,7 +20,7 @@ This project was developed as part of the Full-Stack Engineer Internship Assignm
 - LLM Model:
     - mistralai/**Mixtral-8x7B-Instruct-v0.1** (Together AI API)
 
-<img src="./assets/PDFhelper%20flow.png" alt="Architecture Diagram" width="450"/>
+<img src="./assets/PDFhelper%20flow.png" alt="Architecture Diagram" width="550"/>
 
 
 ### Backend Architecture
