@@ -10,16 +10,24 @@ export default function Home() {
   const router = useRouter();
   const mutation = useMutation({ mutationFn: uploadPdf });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
 
   const onSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setLoading(true);
+    setError(false);
     mutation.mutate(file, {
       onSuccess: (d) => router.push(`/doc/${d.doc_id}?file=${encodeURIComponent(file.name)}`),
-      onError: () => setLoading(false),
+      onError: () => {
+        setLoading(false);
+        setError(true);
+        setTimeout(() => setError(false), 3000);  
+      },
     });
   };
+  
 
   return (
     <div className="min-h-screen relative flex flex-col bg-white">
@@ -91,6 +99,12 @@ export default function Home() {
           </p>
         </div>
       )}
+      {error && (
+        <div className="absolute bottom-4 bg-red-100 text-red-700 border border-red-300 px-4 py-2 rounded shadow-md text-sm">
+          An error occurred. Please try again.<br />Contact admin if the issue persists.
+        </div>
+      )}
+
     </div>
   );
 }
