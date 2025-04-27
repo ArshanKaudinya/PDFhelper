@@ -20,7 +20,7 @@ This project was developed as part of the Full-Stack Engineer Internship Assignm
 - LLM Model:
     - mistralai/**Mixtral-8x7B-Instruct-v0.1** (Together AI API)
 
-<img src="./assets/PDFhelper%20flow.png" alt="Architecture Diagram" width="550"/>
+<img src="./assets/PDFhelperflow.png" alt="Architecture Diagram" width="550"/>
 
 
 ### Backend Architecture
@@ -45,8 +45,8 @@ This project was developed as part of the Full-Stack Engineer Internship Assignm
 #### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-link>
-cd <your-repo-name> 
+git clone https://github.com/ArshanKaudinya/PDFhelper
+cd PDFhelper
 ```
 #### 2. Environment Variables
 
@@ -55,7 +55,7 @@ Create a .env file inside the backend folder with the following:
 ```plaintext
 SUPABASE_URL=your_supabase_url
 SUPABASE_ANON_KEY=your_supabase_anon_key
-HF_TOKEN=your_together_ai_token
+OPENAI_API_KEY=your_together_ai_token
 ```
 Create a .env.local file inside the frontend folder with:
 ```plaintext
@@ -93,7 +93,7 @@ npm run dev
 
 
 ### Key Features
-- Upload PDFs directly from the browser
+- Upload PDFs directly from your browser
 - Embeddings are generated and stored locally
 - Ask natural questions about uploaded PDFs
 - Search within chat by keywords
