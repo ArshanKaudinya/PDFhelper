@@ -97,24 +97,17 @@ export default function Chat() {
     if (!q) return;
     setMsgs(m => [...m, { role: "user", text: q }]);
     inputRef.current!.value = "";
+
+    setTimeout(() => {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+    
     askMut.mutate(q);
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-zinc-50 text-zinc-800 relative">
       <Navbar />
-
-      {showSearch && (
-        <div className="flex justify-center mb-2">
-          <input
-            type="text"
-            placeholder="Search chat..."
-            className="border border-zinc-400 rounded-full px-4 py-1 w-64 text-sm focus:ring-2 focus:ring-emerald-300 bg-zinc-50"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-        </div>
-      )}
 
       <main
         ref={scrollRef}
@@ -166,8 +159,19 @@ export default function Chat() {
           <div ref={bottomRef} />
         </div>
       </main>
+      {showSearch && (
+        <div className="flex justify-center mb-2">
+          <input
+            type="text"
+            placeholder="Search chat..."
+            className="border border-zinc-400 rounded-full px-4 py-1 w-64 text-sm focus:ring-2 focus:ring-emerald-300 bg-zinc-50"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
+      )}
 
-      <footer className="sticky bottom-0 w-full bg-white border border-zinc-400 px-4 py-3">
+      <footer className="sticky bottom-0 w-full bg-white border border-zinc-400 px-4 py-3 z-10">
         <div className="flex gap-2 max-w-3xl mx-auto items-center">
           <button
             onClick={() => setShowSearch(prev => !prev)}
