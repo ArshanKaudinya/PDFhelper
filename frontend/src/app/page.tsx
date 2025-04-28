@@ -74,9 +74,9 @@ export default function Home() {
 
         <ul className="text-sm text-zinc-600 space-y-1 max-w-md mx-auto list-disc pl-5 text-left">
           <li>Max file size&nbsp;<strong>10&nbsp;MB</strong></li>
-          <li>All embeddings stay <strong>on your device</strong></li>
-          <li>Powered by local embeddings + remote Mixtral answers</li>
-          <li>No account required – just drop a PDF and start chatting</li>
+          <li>Unlimited document queries powered by <strong>Mixtral AI</strong></li>
+          <li>Seamless real-time interaction without page reloads</li>
+          <li><strong>No account required</strong> – just drop a PDF and start chatting</li>
         </ul>
 
         <div className="relative mt-0 flex justify-center w-full">
