@@ -76,6 +76,18 @@ export default function Chat() {
     inputRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    if (showSearch) {
+      setTimeout(() => {
+        scrollRef.current?.scrollTo({
+          top: scrollRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }, 500);
+    }
+  }, [showSearch]);
+  
+
   const streamAnswer = (full: string) => {
     setMsgs(m => [...m, { role: "bot", text: "" }]);
     let i = 0;
