@@ -92,13 +92,14 @@ export default function Home() {
             </button>
 
             <span
-              className={`absolute top-full mt-2 bg-white text-emerald-700 border border-emerald-400 text-xs px-4 py-2 rounded shadow-sm max-w-xs text-center transition-opacity ${
+              className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-white text-emerald-700 border border-emerald-400 text-xs px-3 py-2 rounded shadow-sm w-[220px] text-center transition-opacity ${
                 show ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
             >
-              Made by Arshan Kaudinya during 25–29 April.<br />
-              For AI Planet full-stack intern assignment
+              Made by Arshan Kaudinya <br />
+              For AI Planet Internship
             </span>
+
           </div>
         </div>
 

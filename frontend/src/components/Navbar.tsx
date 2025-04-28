@@ -43,7 +43,6 @@ export default function Navbar() {
           </span>
         )}
 
-        {/* Hidden file input */}
         <input
           id="fileInput"
           ref={fileInputRef}
@@ -53,7 +52,6 @@ export default function Navbar() {
           onChange={onSelect}
         />
 
-        {/* Upload button */}
         <label
           htmlFor="fileInput"
           className="cursor-pointer group border border-emerald-600 rounded-md px-4 py-1.5 text-sm relative overflow-hidden bg-emerald-600 flex items-center gap-1 text-white"
@@ -69,11 +67,10 @@ export default function Navbar() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M16 12l-4-4m0 0-4 4m4-4v12" />
           </svg>
 
-          <span className="hidden sm:inline">Upload PDF</span> {/* Show text only on larger screens */}
+          <span className="hidden sm:inline">Upload PDF</span>
         </label>
       </div>
 
-      {/* Loading Screen */}
       {loading && (
         <div className="fixed inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center z-50">
           <div className="w-10 h-10 border-4 border-emerald-400 border-t-transparent rounded-full animate-spin" />
