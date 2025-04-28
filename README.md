@@ -59,9 +59,7 @@ OPENAI_API_KEY=your_together_ai_token
 ```
 Create a .env.local file inside the frontend folder with:
 ```plaintext
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+NEXT_PUBLIC_API_BASE=http://localhost:8000
 ```
 (Replace localhost:8000 if backend hosted elsewhere.)
 
