@@ -1,24 +1,24 @@
 ## AI Planet Full-Stack Internship Assignment
 
-This project was developed as part of the Full-Stack Engineer Internship Assignment for AI Planet during April 25–29, 2025.
+This project was developed as part of the Full-Stack Engineer Internship Assignment for AI Planet during April 25–28, 2025.
 
 ***[Live Demo](https://pd-fhelper.vercel.app/)***
 
 
 - Frontend:
-    - **Next.js** (React 18 App Router), Tailwind CSS, React Query
-- Backend: 
-    - **FastAPI**
-- Database: 
-    - PDFs stored securely in **Supabase** buckets
-    - **SQLite** Database for metadata
-    - Local storage for **FAISS** vector indices
-- NLP and Retrieval: 
-    - LangChain and LlamaIndex
-- Embedding Model: 
-    - togethercomputer/**m2-bert-80M-32k-retrieval** (Together AI API)
+  - **Next.js** (React 18 App Router), Tailwind CSS, React Query
+- Backend:
+  - **FastAPI** for API endpoints and cross-origin interaction
+- Database:
+  - PDFs stored securely in **Supabase** buckets
+  - **SQLite** database for metadata
+  - Local storage for **FAISS** vector indices
+- NLP and Retrieval:
+  - LangChain and LlamaIndex for context retrieval
+- Embedding Model:
+  - togethercomputer/**m2-bert-80M-32k-retrieval** (Together AI API)
 - LLM Model:
-    - mistralai/**Mixtral-8x7B-Instruct-v0.1** (Together AI API)
+  - mistralai/**Mixtral-8x7B-Instruct-v0.1** (Together AI API)
 
 <img src="./assets/PDFhelperflow.png" alt="Architecture Diagram" width="550"/>
 
