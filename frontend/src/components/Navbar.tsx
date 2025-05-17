@@ -23,14 +23,21 @@ export default function Navbar() {
     mutation.mutate(file, {
       onSuccess: (d) =>
         router.push(`/doc/${d.doc_id}?file=${encodeURIComponent(file.name)}`),
-      onError: () => setLoading(false),
-    });
+      onError: () => {
+        setLoading(false);
+        setErrorMessage("Upload failed. Please contact me at arshankaudinya@gmail.com");
+        setTimeout(() => setErrorMessage(""), 4500);
+      },
+    });    
   };
+
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   return (
     <header className="sticky top-0 border-b bg-white border-gray-200 flex items-center z-20 justify-between px-8 py-4">
       <Link href="/" className="text-xl ml-4 font-semibold text-emerald-600">
-        ai<span className="font-light">planet</span>
+        PDF<span className="font-light">helper</span>
       </Link>
 
       <div className="flex items-center gap-4 relative">
@@ -78,6 +85,11 @@ export default function Navbar() {
             Loading chat...<br />
             Server response may take up to a minute!
           </p>
+        </div>
+      )}
+      {errorMessage && (
+        <div className="fixed top-[12%] left-1/2 -translate-x-1/2 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow-md z-50 text-sm">
+          {errorMessage}
         </div>
       )}
     </header>

@@ -1,6 +1,4 @@
-## AI Planet Full-Stack Internship Assignment
-
-This project was developed as part of the Full-Stack Engineer Internship Assignment for AI Planet during April 25–28, 2025.
+## PDFhelper - talk about your PDF!
 
 ***[Live Demo](https://pd-fhelper.vercel.app/)***
 
